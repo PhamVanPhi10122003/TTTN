@@ -1,0 +1,189 @@
+/* Reset chung */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+    outline: none;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header */
+header {
+    height: 100px;
+    width: 100vw;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    background: #f8f8f8;
+}
+/* Layout chính */
+.admin-content {
+    padding-top: 10px; /* Giảm padding */
+    display: flex;
+    gap: 10px; /* Giảm khoảng cách */
+}
+
+/* Sidebar */
+.admin-content-left {
+    padding-left: 10px;
+    width: 18%; /* Thu nhỏ sidebar */
+}
+
+.admin-content-left ul li {
+    padding: 8px 12px; /* Giảm padding */
+    font-size: 13px; /* Giảm kích thước chữ */
+}
+
+/* Layout chính */
+.admin-content {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center; /* Căn giữa nội dung */
+    gap: 10px;
+}
+
+/* Nội dung chính */
+.admin-content-right {
+    width: 80%;
+    max-width: 1000px; /* Giới hạn độ rộng */
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Tạo hiệu ứng nổi */
+}
+
+
+/* Tiêu đề */
+.admin-content-right h1 {
+    font-size: 18px; /* Giảm kích thước chữ */
+    margin-bottom: 15px;
+    padding: 8px;
+}
+
+/* Bảng danh sách */
+table {
+    font-size: 13px; /* Giảm kích thước chữ */
+}
+
+table th, table td {
+    padding: 8px; /* Giảm padding */
+}
+
+/* Form nhập liệu */
+.admin-content-right-cartegory_add {
+    padding: 15px;
+}
+
+.admin-content-right-cartegory_add input,
+.admin-content-right-cartegory_add select {
+    height: 30px; /* Giảm chiều cao */
+    padding: 5px;
+    font-size: 13px;
+}
+
+/* Nút bấm */
+.admin-content-right-cartegory_add button {
+    height: 36px;
+    width: 120px;
+    font-size: 14px;
+}
+
+/* Dropdown */
+select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+select:focus {
+    border-color: #666;
+}
+
+/* Các khối nội dung */
+.box {
+    padding: 20px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+input[type="file"] {
+    border: none;
+}
+
+/* ========== BUTTON ========== */
+button {
+    margin-top: 15px;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
