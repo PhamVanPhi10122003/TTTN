@@ -2,7 +2,11 @@
 include "header.php";
 include "slider.php";
 require_once(__DIR__ . '/class/brand_class.php');
-
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
 $brand = new Brand();
 
 if (isset($_GET['brand_id'])) {

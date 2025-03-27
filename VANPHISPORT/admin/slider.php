@@ -36,6 +36,7 @@
                         <li><a href="userlist.php">Danh sách user</a></li>
                     </ul>
                 </li>
+                <li><a href="../view/logout.php">Đăng xuất</a></li>
             </ul>
         </div>
         

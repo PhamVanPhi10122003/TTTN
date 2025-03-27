@@ -95,8 +95,8 @@ $show_cartegory = $cartegory->show_cartegory();
                     <td><?php echo number_format($row['total_price'], 0, ',', '.'); ?> đ</td>
                     <td class="status-<?php echo $statusClass; ?>"><?php echo $row['status_rental']; ?></td>
                     <td>
-                        <?php if ($row['status_rental'] == "Chờ duyệt") { ?>
-                            <form action="cancel_rental.php" method="POST">
+                        <?php if ($row['status_rental'] == "Chờ xác nhận") { ?>
+                            <form action="../admin/cancel_rental.php" method="POST">
                                 <input type="hidden" name="rental_id" value="<?php echo $row['rental_id']; ?>">
                                 <button type="submit" class="cancel-btn" onclick="return confirm('Bạn có chắc muốn hủy đơn này?')">Hủy</button>
                             </form>
@@ -107,7 +107,21 @@ $show_cartegory = $cartegory->show_cartegory();
             <tr><td colspan="9">Không có đơn thuê nào.</td></tr>
         <?php } ?>
     </table>
+    <div class="chat-container">
+        <div class="chat-circle" onclick="toggleChatbox()">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chatbox">
+            <div class="chat-header">
+                <span>Chat với Văn Phi Sport</span>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <input type="text" id="username" placeholder="Tên của bạn">
+            <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
+            <button onclick="sendMessage()">Gửi</button>
+        </div>
+    </div>
+<script src="../js/admin.js"> </script>
 </section>
-
 </body>
 </html>

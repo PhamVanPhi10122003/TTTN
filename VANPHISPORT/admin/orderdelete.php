@@ -1,6 +1,12 @@
 <?php
 include "../admin/class/address_class.php";
 
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
+
 $Address = new Address;
 
 if (isset($_GET['confirm_delete']) && $_GET['confirm_delete'] == 1) {

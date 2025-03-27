@@ -3,6 +3,11 @@ include "header.php";
 include "slider.php";
 include "class/user_class.php";
 
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
 // Khởi tạo đối tượng user
 $user = new user();
 

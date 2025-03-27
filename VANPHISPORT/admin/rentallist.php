@@ -4,6 +4,11 @@ include "slider.php";
 include "../admin/class/rental_class.php";
 include "../admin/class/product_class.php";
 include "../admin/class/address_class.php";
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
 ?>
 
 <?php   
@@ -28,8 +33,8 @@ $show_rental = $rental -> show_rental();
         <th>Ghi Chú</th>
         <th>Giá Thuê</th>
         <th>Tổng Tiền</th>
-        <th>Ngày Tạo</th> <!-- Mới thêm -->
-        <th>Trạng Thái</th> <!-- Mới thêm -->
+        <th>Ngày Tạo</th> 
+        <th>Trạng Thái</th> 
         <th>Tuỳ biến</th>
     </tr>
     <?php

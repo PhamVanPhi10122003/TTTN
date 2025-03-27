@@ -3,6 +3,12 @@ include "header.php";
 include "slider.php";
 include "../admin/class/product_class.php";
 
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
+
 $product = new Product;
 $show_cartegory = $product->show_cartegory();
 $show_brand = $product->show_brand();

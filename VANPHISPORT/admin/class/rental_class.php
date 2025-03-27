@@ -62,13 +62,13 @@ class Rental {
     }
 
     public function show_rental() {
-        $query = "SELECT tbl_rental.*, 
+        $query = "SELECT DISTINCT tbl_rental.*, 
                          tbl_address.id_user, 
                          tbl_product.product_id
-                  FROM tbl_rental 
-                  LEFT JOIN tbl_address ON tbl_rental.id_user = tbl_address.id_user
-                  LEFT JOIN tbl_product ON tbl_rental.product_id = tbl_product.product_id
-                  ORDER BY tbl_rental.product_id DESC";
+          FROM tbl_rental 
+          LEFT JOIN tbl_address ON tbl_rental.id_user = tbl_address.id_user
+          LEFT JOIN tbl_product ON tbl_rental.product_id = tbl_product.product_id
+          ORDER BY tbl_rental.product_id DESC";
         $result = $this->db->select($query);
         return $result;
     }
@@ -88,6 +88,12 @@ class Rental {
     
         $query = "UPDATE tbl_rental SET status_rental = '$status' WHERE rental_id = '$rental_id'";
         return $this->db->update($query);
+    }
+    
+    public function cancel_rental($rental_id) {
+        $query = "DELETE FROM tbl_rental WHERE rental_id = '$rental_id' AND status_rental = 'Chờ xác nhận'";
+        $result = $this->db->delete($query);
+        return $result;
     }
     
 }

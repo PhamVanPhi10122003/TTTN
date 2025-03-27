@@ -26,7 +26,7 @@ class product {
         ORDER BY tbl_brand.brand_id DESC";
         $result =  $this -> db -> select($query);
         return $result;
-    }
+    }   
     public function get_product_by_id($product_id) {
         $query = "SELECT * FROM tbl_product WHERE product_id = '$product_id'";
         return $this->db->select($query);
@@ -82,14 +82,15 @@ public function show_product() {
         return $result;
     }
 
-    public function update_product($product_id, $product_name, $product_price, $product_price_new, $product_desc, $status_product, $product_sold) {
+    public function update_product($product_id, $product_name, $product_price, $product_price_new, $product_desc, $status_product, $product_sold,$status_buy) {
         $query = "UPDATE tbl_product SET 
                   product_name = '$product_name', 
                   product_price = '$product_price', 
                   product_price_new = '$product_price_new', 
                   product_desc = '$product_desc', 
                   status_product = '$status_product', 
-                  product_sold = '$product_sold' 
+                  product_sold = '$product_sold' , 
+                  status_buy = '$status_buy'
                   WHERE product_id = '$product_id'";
         
         $result = $this->db->update($query);

@@ -245,21 +245,20 @@ $show_product = $product->getDb()->select($query_product);
         </div>
     </div>
     <div class="chat-container">
-    <div class="chat-circle" onclick="toggleChatbox()">
-        <i class="fas fa-comments"></i>
-    </div>
-    <div class="chatbox">
-        <div class="chat-header">
-            <span>Chat với Văn Phi Sport</span>
-            <button class="close-btn" onclick="toggleChatbox()">&times;</button>
+        <div class="chat-circle" onclick="toggleChatbox()">
+            <i class="fas fa-comments"></i>
         </div>
-        <div class="chat-messages" id="chat-messages"></div>
-        <input type="text" id="username" placeholder="Tên của bạn">
-        <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
-        <button onclick="sendMessage()">Gửi</button>
+        <div class="chatbox">
+            <div class="chat-header">
+                <span>Chat với Văn Phi Sport</span>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <input type="text" id="username" placeholder="Tên của bạn">
+            <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
+            <button onclick="sendMessage()">Gửi</button>
+        </div>
     </div>
-</div>
-
+<script src="../js/admin.js"> </script>
 </section>
 
 </section>
@@ -292,6 +291,7 @@ $show_product = $product->getDb()->select($query_product);
 </p>
 </div>
 <script src="../js/script.js"> </script>
+
 </body>
 
 <script>

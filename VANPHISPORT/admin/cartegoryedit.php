@@ -2,7 +2,11 @@
 include "header.php";
 include "slider.php";
 require_once(__DIR__ . '/class/cartegory_class.php');
-
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
 $cartegory = new Cartegory();
 
 if (isset($_GET['cartegory_id'])) {

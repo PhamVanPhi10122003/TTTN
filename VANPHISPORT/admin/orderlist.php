@@ -2,6 +2,13 @@
 include "header.php";
 include "slider.php";
 include "../admin/class/address_class.php";
+
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
+
 ?>
 
 <?php   

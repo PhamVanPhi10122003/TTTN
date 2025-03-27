@@ -120,6 +120,21 @@ $show_order = $order->get_address($id_user);
             <tr><td colspan="8">Không có đơn hàng nào.</td></tr>
         <?php } ?>
     </table>
+    <div class="chat-container">
+        <div class="chat-circle" onclick="toggleChatbox()">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chatbox">
+            <div class="chat-header">
+                <span>Chat với Văn Phi Sport</span>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <input type="text" id="username" placeholder="Tên của bạn">
+            <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
+            <button onclick="sendMessage()">Gửi</button>
+        </div>
+    </div>
+<script src="../js/admin.js"> </script>
 </section>
 </body>
 </html> <section class="app-container">

@@ -3,6 +3,12 @@ include "header.php";
 include "slider.php";
 include "../admin/class/cartegory_class.php";
 
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
+
 $cartegory = new Cartegory;
 $show_cartegory = $cartegory->get_all_cartegory();
 ?>

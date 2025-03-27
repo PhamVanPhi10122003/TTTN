@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
 require_once "../config/database.php"; // Kết nối database
 $db = new Database();
 $messages = $db->select("SELECT * FROM messages ORDER BY created_at DESC");
@@ -30,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["message_id"]) && isset
 <head>
     <meta charset="UTF-8">
     <title>Quản lý Tin Nhắn</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Danh sách tin nhắn</h1>

@@ -36,6 +36,15 @@ function toggleChatbox() {
     const chatbox = document.querySelector(".chatbox");
     chatbox.style.display = (chatbox.style.display === "none" || chatbox.style.display === "") ? "flex" : "none";
 }
+
+// Đóng chatbox khi nhấn phím Esc
+document.addEventListener("keydown", function(event) {
+    const chatbox = document.querySelector(".chatbox");
+    if (event.key === "Escape" && chatbox.style.display === "flex") {
+        chatbox.style.display = "none";
+    }
+});
+
 function sendMessage() {
     const username = document.getElementById("username").value.trim();
     const message = document.getElementById("message").value.trim();
@@ -68,5 +77,41 @@ function sendMessage() {
             alert("Lỗi khi gửi tin nhắn: " + data.message);
         }
     })
-    .catch(error => console.error("❌ Lỗi gửi tin nhắn:", error));
+    .catch(error => console.error(" Lỗi gửi tin nhắn:", error));
 }
+
+
+function toggleQR() {
+    var bankTransfer = document.getElementById('bank_transfer');
+    var momo = document.getElementById('momo');
+    var qrContainer = document.getElementById('qr-container');
+    var qrImage = document.getElementById('qr-image');
+
+    if (bankTransfer.checked) {
+        qrContainer.style.display = 'block';
+        qrImage.src = "../image/qrcode-bidv.jpg";  // Mã QR ngân hàng
+    } else if (momo.checked) {
+        qrContainer.style.display = 'block';
+        qrImage.src = "../image/qrcode-momo.jpg";  // Mã QR MoMo
+    } else {
+        qrContainer.style.display = 'none';
+    }
+}
+
+
+    function toggleRentalTerms() {
+        var terms = document.getElementById("rental-terms");
+        if (terms.style.display === "none") {
+            terms.style.display = "block";
+        } else {
+            terms.style.display = "none";
+        }
+    }
+
+
+
+
+
+
+
+

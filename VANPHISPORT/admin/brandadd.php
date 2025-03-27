@@ -2,7 +2,11 @@
 include "header.php";
 include "slider.php";
 include "class/brand_class.php";
-
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
 ?>
 
 <?php   

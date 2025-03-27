@@ -14,7 +14,7 @@ if (!isset($_SESSION["id_user"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanh Toán Thành Công - VANPHI STORE</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="payment-success">
@@ -26,7 +26,7 @@ if (!isset($_SESSION["id_user"])) {
 
     <script> 
         // Thiết lập đồng hồ đếm ngược
-        let countdown = 3;
+    let countdown = 3;
         const countdownElement = document.getElementById('countdown');
 
         setInterval(function() {
@@ -35,7 +35,7 @@ if (!isset($_SESSION["id_user"])) {
             if (countdown <= 0) {
                 window.location.href = 'trangchu.php'; // Chuyển hướng về trang chủ
             }
-        }, 1000); // Cập nhật mỗi giây
+        }, 1000); // Cập nhật mỗi giây 
     </script>
 
 </body>

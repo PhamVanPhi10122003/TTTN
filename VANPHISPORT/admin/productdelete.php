@@ -1,6 +1,12 @@
 <?php
 include "class/product_class.php";
 
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
+
 $product = new Product;
 
 if (isset($_GET['confirm_delete']) && $_GET['confirm_delete'] == 1) {

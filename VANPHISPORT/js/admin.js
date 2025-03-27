@@ -6,13 +6,11 @@ function loadMessages() {
             chatMessages.innerHTML = ""; // Xóa nội dung cũ
 
             data.forEach(msg => {
-                // Hiển thị tin nhắn của khách hàng
-                let userMessage = `<p><strong>${msg.username}:</strong> ${msg.message}</p>`;
+                let userMessage = `<p class="user-message"><strong>${msg.username}:</strong> ${msg.message}</p>`;
                 chatMessages.innerHTML += userMessage;
 
-                // Nếu Admin có phản hồi, hiển thị luôn
                 if (msg.reply && msg.reply.trim() !== "") {
-                    let adminReply = `<p class="admin-reply"><strong>Admin:</strong> ${msg.reply}</p>`;
+                    let adminReply = `<p class="admin-message"><strong>Admin:</strong> ${msg.reply}</p>`;
                     chatMessages.innerHTML += adminReply;
                 }
             });
@@ -22,11 +20,12 @@ function loadMessages() {
         .catch(error => console.error("❌ Lỗi loadMessages():", error));
 }
 
-// Tải tin nhắn mỗi 3 giây
+// Load tin nhắn mỗi 3 giây để cập nhật phản hồi mới
 document.addEventListener("DOMContentLoaded", function () {
     loadMessages();
     setInterval(loadMessages, 3000);
 });
+
 
 
 

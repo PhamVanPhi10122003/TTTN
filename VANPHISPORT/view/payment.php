@@ -118,22 +118,50 @@ if (!$show_cartegory) {
             </label>
         </div>
         <div class="payment-option">
-            <input type="radio" id="bank_transfer" name="payment_method" value="Bank Transfer" required>
+            <input type="radio" id="bank_transfer" name="payment_method" value="Bank Transfer" required onchange="toggleQR()">
             <label for="bank_transfer">
                 <img src="../image/bidv.jpg" alt="Bank"> Chuyển khoản ngân hàng
             </label>
         </div>
+
         <div class="payment-option">
-            <input type="radio" id="momo" name="payment_method" value="MoMo" required>
+            <input type="radio" id="momo" name="payment_method" value="MoMo" required onchange="toggleQR()">
             <label for="momo">
                 <img src="../image/momo.jpg" alt="MoMo"> Thanh toán qua MoMo
             </label>
         </div>
+
+        <!-- Div chứa mã QR ngân hàng -->
+        <div id="qr-bank" style="display: none; text-align: center; margin-top: 10px;">
+            <img src="../image/qrcode.jpg" alt="QR Bank" width="200">
+            <p>Quét mã QR để thanh toán qua ngân hàng</p>
+        </div>
+
+        <!-- Div chứa mã QR MoMo -->
+        <div id="qr-momo" style="display: none; text-align: center; margin-top: 10px;">
+            <img src="../image/momoo.jpg" alt="QR MoMo" width="200">
+            <p>Quét mã QR để thanh toán qua MoMo</p>
+        </div>
+
         <button type="submit">Xác nhận thanh toán</button>
         <?php if (isset($error_message)) { echo "<p style='color:red;'>$error_message</p>"; } ?>
     </form>
+    <div class="chat-container">
+        <div class="chat-circle" onclick="toggleChatbox()">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chatbox">
+            <div class="chat-header">
+                <span>Chat với Văn Phi Sport</span>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <input type="text" id="username" placeholder="Tên của bạn">
+            <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
+            <button onclick="sendMessage()">Gửi</button>
+        </div>
+    </div>
+<script src="../js/admin.js"> </script>
+<script src="../js/script.js"> </script>
 </section>
-
-
 </body>
 </html>

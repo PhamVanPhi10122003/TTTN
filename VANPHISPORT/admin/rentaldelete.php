@@ -1,10 +1,16 @@
 <?php
 include "class/rental_class.php";
 
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
+
 $rental = new Rental;
 
 if (isset($_GET['rental_id'])) {
-    $id_rental = $_GET['rental_id'];
+    $rental_id = $_GET['rental_id'];
 
     echo "<script>
         var confirmDelete = confirm('Bạn có chắc chắn muốn xóa mục này không?');

@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../image/b3.jpg') no-repeat center center/cover; 
+    /* Thay 'payment-success-bg.jpg' bằng đường dẫn ảnh nền của bạn */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.payment-success {
+    background: rgba(0, 0, 0, 0.2); /* Làm mờ nền để dễ đọc chữ */
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 1000px;
+    width: 80%;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
+
+.payment-success h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+    color:rgb(64, 9, 193); /* Màu xanh thành công */
+}
+
+.payment-success p {
+    font-size: 25px;
+}
+
+#countdown {
+    font-weight: bold;
+    color: yellow;
+}

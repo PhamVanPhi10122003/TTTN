@@ -1,9 +1,9 @@
 <?php
+session_start();
 require_once "../admin/class/cartegory_class.php";
 require_once "../admin/class/brand_class.php";
 require_once "../admin/class/user_class.php";
 ?>
-
 <?php
 $cartegory = new cartegory;
 $show_cartegory = $cartegory->show_cartegory();
@@ -90,6 +90,21 @@ $show_cartegory = $cartegory->show_cartegory();
         <div class="dot"></div>
 
     </div>
+    <div class="chat-container">
+        <div class="chat-circle" onclick="toggleChatbox()">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chatbox">
+            <div class="chat-header">
+                <span>Chat với Văn Phi Sport</span>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <input type="text" id="username" placeholder="Tên của bạn">
+            <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
+            <button onclick="sendMessage()">Gửi</button>
+        </div>
+    </div>
+<script src="../js/admin.js"> </script>
 </section>
 <section class="app-container">
     <p>Tải ứng dụng VĂN PHI SPORT</p>

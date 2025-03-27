@@ -1,6 +1,11 @@
 <?php
 include "class/user_class.php";
 
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
 $user = new User;
 
 if (isset($_GET['id_user'])) {

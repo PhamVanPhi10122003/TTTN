@@ -187,3 +187,77 @@ button {
 button:hover {
     background-color: #555;
 }
+
+
+/*-----------chatbox------*/
+/* Reset mặc định */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Tiêu đề */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Bảng danh sách tin nhắn */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Tiêu đề bảng */
+th {
+    background-color: #0078FF;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Dữ liệu bảng */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Dòng lẻ có nền xám nhẹ */
+tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Ô nhập phản hồi */
+input[type="text"] {
+    padding: 6px;
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Nút gửi */
+button {
+    background-color: #0078FF;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #005FCC;
+}
+
+/* Định dạng phản hồi chưa có */
+i {
+    color: gray;
+}

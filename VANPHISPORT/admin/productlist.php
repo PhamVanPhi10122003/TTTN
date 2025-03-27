@@ -2,6 +2,11 @@
 include "header.php";
 include "slider.php";
 include "class/product_class.php";
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] != '0') {
+    header("Location: ../view/login.php");
+    exit();
+}
 ?>
 
 <?php   
@@ -22,7 +27,8 @@ $show_product = $product -> show_product();
                         <th>Giá sản phẩm</th>
                         <th>Giá sản phẩm mới</th>
                         <th>Mô tả sản phẩm</th>
-                        <th>Trạng thái</th>
+                        <th>Trạng thái thuê</th>
+                        <th>Trạng thái mua</th>
                         <th>Đã bán</th>
                         <th>Tuỳ biến</th>
                     </tr>
@@ -40,6 +46,7 @@ $show_product = $product -> show_product();
                             <td><?php echo number_format($result['product_price_new'], 0, ',', '.'); ?> <sup>đ</sup></p></td>
                             <td><?php echo $result['product_desc'] ?></td>
                             <td><?php echo $result['status_product'] ?></td>
+                            <td><?php echo $result['status_buy'] ?></td>
                             <td><?php echo $result['product_sold'] ?></td>
                             <td><a href=" productedit.php?product_id=<?php echo $result['product_id'] ?>">Sửa</a>|<a href="productdelete.php?product_id=<?php echo $result['product_id'] ?>">Xoá</a></td>
                         </tr>

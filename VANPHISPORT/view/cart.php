@@ -198,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <td>TỔNG TIỀN HÀNG</td>
                         <td><span id="total_price"><?php echo number_format($product_data['product_price_new'], 0, ',', '.'); ?> <sup>đ</sup></span></td>
                     </tr>
-                </table>
+                </table> 
                 <div class="cart-content-right-text">
                     <p>Bạn sẽ được miễn phí ship khi đơn hàng của bạn có tổng giá trị trên 2.000.000 đ</p>
                     <p style="color: red; font-weight: bold;">Mua thêm <span style="font-size: 18px;">100.000đ</span> để được miễn phí SHIP</p>
@@ -213,9 +213,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="hidden" id="product_qty" name="product_qty" value="1">
                 <input type="hidden" id="total_price" name="total_price" value="<?php echo $product_data['product_price_new']; ?>">
                 <input type="hidden" id="selectedSize" name="product_size" value="<?php echo $product_data['product_size'];?>" >
-                <a href="cartegory.php">
-                 <button type="button">TIẾP TỤC MUA SẮM</button>
-                </a>
                  <button type="submit">THANH TOÁN</button>
                 </form>
       
@@ -224,8 +221,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p>TÀI KHOẢN</p>
                     <p>Hãy <a href="">Đăng nhập</a>tài khoản của bạn để tích điểm thành viên</p>
                 </div>
-    
             </div>
+            <div class="chat-container">
+                <div class="chat-circle" onclick="toggleChatbox()">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="chatbox">
+                    <div class="chat-header">
+                        <span>Chat với Văn Phi Sport</span>
+                    </div>
+                    <div class="chat-messages" id="chat-messages"></div>
+                    <input type="text" id="username" placeholder="Tên của bạn">
+                    <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
+                    <button onclick="sendMessage()">Gửi</button>
+                </div>
+            </div>
+<script src="../js/admin.js"> </script>
 </section>
 <section class="app-container">
     <p>Tải ứng dụng VĂN PHI SPORT</p>
