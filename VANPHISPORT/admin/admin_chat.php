@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["message_id"]) && isset
     $reply = trim($_POST["reply"]);
 
     if (!empty($reply)) {
-        // Sửa lỗi execute() bằng prepare() và bind_param()
+
         $stmt = $db->prepare("UPDATE messages SET reply = ? WHERE id = ?");
         $stmt->bind_param("si", $reply, $message_id);
         if ($stmt->execute()) {

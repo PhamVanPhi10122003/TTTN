@@ -46,11 +46,11 @@ $show_address = $Address -> show_address();
                 <td><?php echo $result['district']; ?></td>
                 <td><?php echo $result['address']; ?></td>
                 <td><?php echo $result['product_name']; ?></td>
-                <td><?php echo $result['total_price']; ?></td>
+                <td><?php echo number_format($result['total_price'], 0, ',', '.'); ?> <sup>đ</sup></p></td>
                 <td><?php echo $result['product_qty']; ?></td>
                 <td>
         <form action="order_status_update.php" method="POST">
-            <input type="hidden" name="id_user" value="<?php echo $result['id_user']; ?>">
+            <input type="hidden" name="id" value="<?php echo $result['id']; ?>">
             <select name="status" onchange="this.form.submit()">
                 <option value="Chờ xác nhận" <?php if($result['status'] == 'Chờ xác nhận') echo 'selected'; ?>>Chờ xác nhận</option>
                 <option value="Đang giao" <?php if($result['status'] == 'Đang giao') echo 'selected'; ?>>Đang giao</option>

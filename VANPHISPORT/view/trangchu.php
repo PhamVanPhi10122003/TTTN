@@ -21,6 +21,7 @@ $show_cartegory = $cartegory->show_cartegory();
 </head>
 <body>
 <header>
+<div class="hamburger-icon" onclick="toggleMenu()">☰</div>
     <div class="logo">
         <a href="trangchu.php"><img src="../image/1-removebg-preview.png" style="width: 100px;"></a>
     </div>
@@ -63,7 +64,8 @@ $show_cartegory = $cartegory->show_cartegory();
     ?>
 </div>
     <div class="other">
-        <li><input id="searchInput" placeholder="Tìm kiếm" type="text"><i class="fas fa-search"></i></li>
+        <li><input id="searchInput" placeholder="Tìm kiếm sản phẩm..." type="text" onkeyup="searchProduct()"><i class="fas fa-search"></i></li> 
+        <div id="searchResults"></div>
         <li><a class="fa fa-user" href="profile.php"></a></li>
         <li><a class="fa fa-shopping-bag" href="history.php"></a></li>
         <li><a class="fa fa-history" href="rental_history.php"></a></li>
@@ -76,11 +78,11 @@ $show_cartegory = $cartegory->show_cartegory();
 </header>
 <section id="Slider">
     <div class="aspect-ratio-169">
-        <img src="../image/b1.jpg">
-        <img src="../image/b2.jpg">
-        <img src="../image/b3.jpg">
-        <img src="../image/b5.jpg">
-        <img src="../image/b4.jpg">
+        <img src="../image/banner8.webp">
+        <img src="../image/banner7.webp">
+        <img src="../image/banner6.webp">
+        <img src="../image/banner4.webp">
+        <img src="../image/banner5.webp">
     </div>
     <div class="dot-container">
         <div class="dot active"></div>
@@ -90,20 +92,19 @@ $show_cartegory = $cartegory->show_cartegory();
         <div class="dot"></div>
 
     </div>
-    <div class="chat-container">
-        <div class="chat-circle" onclick="toggleChatbox()">
-            <i class="fas fa-comments"></i>
-        </div>
-        <div class="chatbox">
-            <div class="chat-header">
-                <span>Chat với Văn Phi Sport</span>
-            </div>
-            <div class="chat-messages" id="chat-messages"></div>
-            <input type="text" id="username" placeholder="Tên của bạn">
-            <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
-            <button onclick="sendMessage()">Gửi</button>
-        </div>
+<div class="chat-container">
+    <div class="chat-circle" onclick="toggleChatbox()">
+        <i class="fas fa-comments"></i>
     </div>
+    <div class="chatbox">
+        <div class="chat-header">
+            <span>Chat với Văn Phi Sport</span>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <textarea id="message" placeholder="Nhập tin nhắn..." onkeypress="handleKeyPress(event)"></textarea>
+        <button onclick="sendMessage()">Gửi</button>
+    </div>
+</div>
 <script src="../js/admin.js"> </script>
 </section>
 <section class="app-container">

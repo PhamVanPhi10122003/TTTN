@@ -8,20 +8,20 @@ class OrderStatusUpdate {
         $this->db = new Database();
     }
 
-    public function update_status($id_user, $status) {
-        $query = "UPDATE tbl_address SET status = '$status' WHERE id_user = '$id_user'";
+    public function update_status($id, $status) {
+        $query = "UPDATE tbl_address SET status = '$status' WHERE id = '$id'";
         $result = $this->db->update($query);
         return $result ? true : false;
     }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_user = $_POST['id_user'] ?? null;
+    $id = $_POST['id'] ?? null;
     $status = $_POST['status'] ?? null;
 
-    if ($id_user && $status) {
+    if ($id && $status) {
         $orderStatusUpdate = new OrderStatusUpdate();
-        $updateResult = $orderStatusUpdate->update_status($id_user, $status);
+        $updateResult = $orderStatusUpdate->update_status($id, $status);
 
         if ($updateResult) {
             header("Location: orderlist.php?success=1");

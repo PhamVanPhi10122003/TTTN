@@ -52,9 +52,9 @@ class user {
         $result = $this->db->select($query);
         return $result;
     }
-    public function update_user($user_id, $username, $lastname, $email, $PhoneNumber, $Address, $password, $role) {
+    public function update_user($user_id, $username, $lastname, $email, $PhoneNumber, $Address, $role) {
         $query = "UPDATE tbl_user 
-                  SET username = '$username', lastname = '$lastname', email = '$email', PhoneNumber = '$PhoneNumber', Address = '$Address', password = '$password', role = '$role'
+                  SET username = '$username', lastname = '$lastname', email = '$email', PhoneNumber = '$PhoneNumber', Address = '$Address', role = '$role'
                   WHERE id_user = '$user_id'";
         $result = $this->db->update($query);  // Thực thi truy vấn
         return $result;
@@ -65,4 +65,13 @@ class user {
         header('Location:userlist.php');
         return $result;
     }
+    public function update_user_info($user_id, $new_username, $new_lastname) {
+        $new_username = $this->db->link->real_escape_string($new_username);
+        $new_lastname = $this->db->link->real_escape_string($new_lastname);
+    
+        $query = "UPDATE tbl_user SET username = '$new_username', lastname = '$new_lastname' WHERE id_user = '$user_id'";
+        return $this->db->update($query);
+    }
+    
+    
 }  

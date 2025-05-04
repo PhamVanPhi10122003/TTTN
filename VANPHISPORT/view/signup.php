@@ -33,27 +33,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="signup.php" method="post">
             <div class="form-group">
                 <label for="username">First Name:</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" placeholder="Enter your Frist Name" required>
             </div>
             <div class="form-group">
                 <label for="lastname">Last Name:</label>
-                <input type="text" id="lastname" name="lastname" required>
+                <input type="text" id="lastname" name="lastname" placeholder="Enter your Last Name" required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
-                <input type="text" id="PhoneNumber" name="PhoneNumber" required>
+                <input type="text" id="PhoneNumber" name="PhoneNumber" placeholder="Enter your PhoneNumber" required>
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
-                <input type="text" id="Address" name="Address" required>
+                <input type="text" id="Address" name="Address" placeholder="Enter your Address"  required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
             </div>
             <button type="submit" class="submit-btn">Sign Up</button>
             <p>Tôi đã có tài khoản? <a href="login.php">Login</a></p>

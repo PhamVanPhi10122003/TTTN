@@ -49,6 +49,7 @@ $show_product = $product->getDb()->select($query_product);
 </head>
 <body>
 <header>
+<div class="hamburger-icon" onclick="toggleMenu()">☰</div>
     <div class="logo">
         <a href="trangchu.php"><img src="../image/1-removebg-preview.png" style="width: 100px;"></a>
     </div>
@@ -91,7 +92,8 @@ $show_product = $product->getDb()->select($query_product);
     ?>
 </div>
     <div class="other">
-        <li><input id="searchInput" placeholder="Tìm kiếm" type="text"><i class="fas fa-search"></i></li>
+        <li><input id="searchInput" placeholder="Tìm kiếm sản phẩm..." type="text" onkeyup="searchProduct()"><i class="fas fa-search"></i></li> 
+        <div id="searchResults"></div>
         <li><a class="fa fa-user" href="profile.php"></a></li>
         <li><a class="fa fa-shopping-bag" href="history.php"></a></li>
         <li><a class="fa fa-history" href="rental_history.php"></a></li>
@@ -151,36 +153,7 @@ $show_product = $product->getDb()->select($query_product);
     <div class="container">
         <div class="row">
             <div class="cartegory-left">
-                <ul>
-                    <?php
-                    // Kiểm tra nếu có danh mục
-                    if (isset($show_cartegory) && $show_cartegory) {
-                        while ($result = $show_cartegory->fetch_assoc()) {
-                            $cartegory_id = $result['cartegory_id'];
-                    ?>
-                        <li class="cartegory-left-li">
-                            <a href="#"><?php echo $result['cartegory_name']; ?></a>
-                            <ul>
-                                <?php
-                                // Hiển thị các sản phẩm con (sub-category) nếu có
-                                if ($show_sub_category) {
-                                    while ($sub_result = $show_sub_category->fetch_assoc()) {
-                                ?>
-                                    <li><a href="#"><?php echo $sub_result['brand_name']; ?></a></li>
-                                <?php
-                                    }
-                                }
-                                ?>
-                            </ul>
-                        </li>
-                    <?php
-                        }
-                    } else {
-                        // Thông báo nếu không có danh mục
-                        echo "<li>Không có danh mục nào.</li>";
-                    }
-                    ?>
-                </ul>
+            
             </div>
             <div class="cartegory-right row">
                 <div class="cartegory-right-top-item">
@@ -253,8 +226,7 @@ $show_product = $product->getDb()->select($query_product);
                 <span>Chat với Văn Phi Sport</span>
             </div>
             <div class="chat-messages" id="chat-messages"></div>
-            <input type="text" id="username" placeholder="Tên của bạn">
-            <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
+            <textarea id="message" placeholder="Nhập tin nhắn..." onkeypress="handleKeyPress(event)"></textarea>
             <button onclick="sendMessage()">Gửi</button>
         </div>
     </div>

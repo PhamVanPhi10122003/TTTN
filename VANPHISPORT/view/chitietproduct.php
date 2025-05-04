@@ -30,7 +30,11 @@ if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
 
     // Truy vấn thông tin sản phẩm dựa trên ID
-    $query = "SELECT * FROM tbl_product WHERE product_id = '$product_id'";
+    $query = "SELECT p.*, c.cartegory_name 
+          FROM tbl_product p 
+          JOIN tbl_cartegory c ON p.cartegory_id = c.cartegory_id 
+          WHERE p.product_id = '$product_id'";
+
     $result = $product->getDb()->select($query);
 
     // Kiểm tra nếu không tìm thấy sản phẩm
@@ -43,8 +47,19 @@ if (isset($_GET['product_id'])) {
 } else {
     die("Không có sản phẩm nào được chọn.");
 }
+$cartegory_name = $product_data['cartegory_name'];
 
 ?>
+<?php
+$product_id = $_GET['product_id'];
+$get_product = $product->get_product_by_id($product_id);
+$product_detail = $get_product->fetch_assoc();
+$brand_id = $product_detail['brand_id']; // Lấy brand_id
+
+// Lấy sản phẩm liên quan theo thương hiệu
+$related_products = $product->get_related_product_by_brand($brand_id, $product_id);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,6 +72,7 @@ if (isset($_GET['product_id'])) {
 </head>
 <body>
 <header>
+<div class="hamburger-icon" onclick="toggleMenu()">☰</div>
     <div class="logo">
     <a href="trangchu.php"><img src="../image/1-removebg-preview.png" style="width: 100px;"></a>
     </div>
@@ -99,7 +115,8 @@ if (isset($_GET['product_id'])) {
     ?>
 </div>
     <div class="other">
-    <li><input id="searchInput" placeholder="Tìm kiếm" type="text"><i class="fas fa-search"></i></li>
+    <li><input id="searchInput" placeholder="Tìm kiếm sản phẩm..." type="text" onkeyup="searchProduct()"><i class="fas fa-search"></i></li> 
+    <div id="searchResults"></div>
     <li><a class="fa fa-user" href="profile.php"></a></li>
     <li><a class="fa fa-shopping-bag" href="history.php"></a></li>
     <li><a class="fa fa-history" href="rental_history.php"></a></li>
@@ -136,13 +153,27 @@ if (isset($_GET['product_id'])) {
                 <p style="color: red;">Vui lòng chọn size</p>
                     <p style="font-weight: bold;">Size</p>
                     <div class="size" name="product_size">
-                        <span data-size="38" onclick="selectSize(this)">38</span>
-                        <span data-size="39" onclick="selectSize(this)">39</span>
-                        <span data-size="40" onclick="selectSize(this)">40</span>
-                        <span data-size="41" onclick="selectSize(this)">41</span>
-                        <span data-size="42" onclick="selectSize(this)">42</span>
-                    </div> 
-                    
+                        <?php if (strtoupper($cartegory_name) == 'GIÀY') { ?>
+                            <!-- Size số -->
+                            <span data-size="38" onclick="selectSize(this)">38</span>
+                            <span data-size="39" onclick="selectSize(this)">39</span>
+                            <span data-size="40" onclick="selectSize(this)">40</span>
+                            <span data-size="41" onclick="selectSize(this)">41</span>
+                            <span data-size="42" onclick="selectSize(this)">42</span>
+                        <?php } elseif (strtoupper($cartegory_name) == 'BÓNG') { ?>
+                            <!-- Size chữ -->
+                            <span data-size="Số 4" onclick="selectSize(this)">Số 4</span>
+                            <span data-size="Số 5" onclick="selectSize(this)">Số 5</span>
+                            
+                        <?php }else { ?>
+                            <!-- Size chữ -->
+                            <span data-size="S" onclick="selectSize(this)">S</span>
+                            <span data-size="M" onclick="selectSize(this)">M</span>
+                            <span data-size="L" onclick="selectSize(this)">L</span>
+                            <span data-size="XL" onclick="selectSize(this)">XL</span>
+                            <span data-size="XXL" onclick="selectSize(this)">XXL</span>
+                        <?php } ?>
+                    </div>
                     <div class="product-content-right-product-buttom">
                     <div class="cart-content-right-button">
                     <form action="" method="POST">
@@ -156,7 +187,6 @@ if (isset($_GET['product_id'])) {
                         
                         <!-- Trường này xác định hành động -->
                         <input type="hidden" id="action" name="action" value="">
-
                         <button onclick="setAction('buy')" 
                             <?php echo ($product_data['status_buy'] == 0) ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''; ?>>
                             <i class="fa-solid fa-cart-shopping"></i> Mua hàng
@@ -180,7 +210,6 @@ if (isset($_GET['product_id'])) {
                                 </ul>
                             </div>
                         </div>
-
                         <?php if ($product_data['status_product'] == 0) { ?>
                             <p style="color: red;">Sản phẩm này hiện không có sẵn để thuê.</p>
                         <?php } ?>
@@ -214,6 +243,14 @@ if (isset($_GET['product_id'])) {
                             <div class="product-content-right-bottom-content">
                                 <div class="product-content-right-bottom-content-chitiet">
                                 <?php echo $product_data['product_desc']; ?>
+                                <?php
+                            $cartegory_upper = strtoupper($cartegory_name);
+                            if ($cartegory_upper == 'GIÀY') {
+                                echo '<img src="../image/sizegiay.jpg" alt="Size giày">';
+                            } elseif ($cartegory_upper == 'ÁO QUẦN BÓNG ĐÁ') {
+                                echo '<img src="../image/sizeao.jpg" alt="Size áo">';
+                            } 
+                        ?>
                                 </div>
                             </div>
                         </div>
@@ -223,41 +260,39 @@ if (isset($_GET['product_id'])) {
     <div class="product-related-title">
         <p>SẢN PHẨM LIÊN QUAN</p>
     </div>
-    <div class="product-content row">
+   <div class="product-content row">
     <?php
-                    if ($show_product && $show_product->num_rows > 0) {
-                        while ($product = $show_product->fetch_assoc()) {
-                    ?>
-                        <div class="cartegory-right-content-item">
-                            <a href="chitietproduct.php?product_id=<?php echo $product['product_id']; ?>">
-                                <img src="../image/<?php echo $product['product_img']; ?>" alt="<?php echo $product['product_name']; ?>">
-                            </a>
-                            <h1><?php echo $product['product_name']; ?></h1>
-                            
-                            <p class="sale-price"><?php echo number_format($product['product_price_new'], 0, ',', '.'); ?> <sup>đ</sup></p>
-                            <p class="original-price"><?php echo number_format($product['product_price'], 0, ',', '.'); ?> <sup>đ</sup></p>
-                        </div>
-                    <?php
-                        }
-                    } else {
-                        echo "<p>Không có sản phẩm nào phù hợp.</p>";
-                    }
-                    ?>
-    </div>
-    <div class="chat-container">
-    <div class="chat-circle" onclick="toggleChatbox()">
-        <i class="fas fa-comments"></i>
-    </div>
-    <div class="chatbox">
-        <div class="chat-header">
-            <span>Chat với Văn Phi Sport</span>
+    if ($related_products && $related_products->num_rows > 0) {
+        while ($related = $related_products->fetch_assoc()) {
+    ?>
+        <div class="cartegory-right-content-item">
+            <a href="chitietproduct.php?product_id=<?php echo $related['product_id']; ?>">
+                <img src="../image/<?php echo $related['product_img']; ?>" alt="<?php echo $related['product_name']; ?>">
+            </a>
+            <h1><?php echo $related['product_name']; ?></h1>
+            <p class="sale-price"><?php echo number_format($related['product_price_new'], 0, ',', '.'); ?> <sup>đ</sup></p>
+            <p class="original-price"><?php echo number_format($related['product_price'], 0, ',', '.'); ?> <sup>đ</sup></p>
         </div>
-        <div class="chat-messages" id="chat-messages"></div>
-        <input type="text" id="username" placeholder="Tên của bạn">
-        <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
-        <button onclick="sendMessage()">Gửi</button>
-    </div>
+    <?php
+        }
+    } else {
+        echo "<p>Không có sản phẩm liên quan.</p>";
+    }
+    ?>
 </div>
+    <div class="chat-container">
+        <div class="chat-circle" onclick="toggleChatbox()">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chatbox">
+            <div class="chat-header">
+                <span>Chat với Văn Phi Sport</span>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <textarea id="message" placeholder="Nhập tin nhắn..." onkeypress="handleKeyPress(event)"></textarea>
+            <button onclick="sendMessage()">Gửi</button>
+        </div>
+    </div>
 <script src="../js/admin.js"> </script>
 </section>
 <section class="app-container">

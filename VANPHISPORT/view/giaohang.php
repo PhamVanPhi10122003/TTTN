@@ -119,7 +119,8 @@ if (!empty($_GET['product_name']) && !empty($_GET['product_price_new']) && !empt
         ?>
     </div>
     <div class="other">
-        <li><input id="searchInput" placeholder="Tìm kiếm" type="text"><i class="fas fa-search"></i></li>
+        <li><input id="searchInput" placeholder="Tìm kiếm sản phẩm..." type="text" onkeyup="searchProduct()"><i class="fas fa-search"></i></li> 
+        <div id="searchResults"></div>
         <li><a class="fa fa-user" href="profile.php"></a></li>
         <li><a class="fa fa-shopping-bag" href="history.php"></a></li>
         <li><a class="fa fa-history" href="rental_history.php"></a></li>
@@ -218,8 +219,7 @@ if (!empty($_GET['product_name']) && !empty($_GET['product_price_new']) && !empt
                 <span>Chat với Văn Phi Sport</span>
             </div>
             <div class="chat-messages" id="chat-messages"></div>
-            <input type="text" id="username" placeholder="Tên của bạn">
-            <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
+            <textarea id="message" placeholder="Nhập tin nhắn..." onkeypress="handleKeyPress(event)"></textarea>
             <button onclick="sendMessage()">Gửi</button>
         </div>
     </div>
@@ -254,7 +254,7 @@ if (!empty($_GET['product_name']) && !empty($_GET['product_price_new']) && !empt
 </p>
 </div>
 </body>
-<script src="../js/scripts.js"></script>
+<script src="../js/script.js"></script>
 <script>
 const header =document.querySelector("header")
     window.addEventListener("scroll",function(){

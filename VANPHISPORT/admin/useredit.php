@@ -25,11 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $PhoneNumber = $_POST['PhoneNumber'];
     $Address = $_POST['Address'];
-    $password = $_POST['password'];
     $role = $_POST['role'];
 
     // Cập nhật người dùng
-    $updateUser = $user->update_user($user_id, $username, $lastname, $email, $PhoneNumber, $Address, $password, $role);
+    $updateUser = $user->update_user($user_id, $username, $lastname, $email, $PhoneNumber, $Address, $role);
     if ($updateUser) {
         echo "<script>alert('Cập nhật người dùng thành công!'); window.location = 'userlist.php';</script>";
     } else {
@@ -49,22 +48,19 @@ if ($get_user) {
         <h1>Chỉnh sửa người dùng</h1>
         <form action="" method="POST">
             <label for="username">Tên người dùng</label>
-            <input type="text" name="username" value="<?php echo $result['username']; ?>" required>
+            <input type="text" name="username" value="<?php echo $result['username']; ?>" required> <br>
+
+            <label for="lastname">Họ</label> <br>
+            <input type="text" name="lastname" value="<?php echo $result['lastname']; ?>" required> <br>
             
-            <label for="lastname">Họ</label>
-            <input type="text" name="lastname" value="<?php echo $result['lastname']; ?>" required>
+            <label for="email">Email</label> 
+            <input type="email" name="email" value="<?php echo $result['email']; ?>" required> 
             
-            <label for="email">Email</label>
-            <input type="email" name="email" value="<?php echo $result['email']; ?>" required>
-            
-            <label for="PhoneNumber">Số điện thoại</label>
-            <input type="text" name="PhoneNumber" value="<?php echo $result['PhoneNumber']; ?>">
+            <label for="PhoneNumber">Số điện thoại</label> <br>
+            <input type="text" name="PhoneNumber" value="<?php echo $result['PhoneNumber']; ?>"> <br>
             
             <label for="Address">Địa chỉ</label>
             <textarea name="Address"><?php echo $result['Address']; ?></textarea>
-            
-            <label for="password">Mật khẩu</label>
-            <input type="password" name="password" value="<?php echo $result['password']; ?>">
             
             <label for="role">Vai trò</label>
             <select name="role">

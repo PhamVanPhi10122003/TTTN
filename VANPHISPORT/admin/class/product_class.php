@@ -14,6 +14,7 @@ class product {
             $this -> db = new Database();
     }
    
+    
     public function show_cartegory() {
         $query = "SELECT * FROM tbl_cartegory ORDER BY cartegory_id DESC";
         $result =  $this -> db -> select($query);
@@ -99,7 +100,23 @@ public function show_product() {
         } else {
             echo "<script>alert('Cập nhật thất bại!');</script>";
         }
+ 
     }
+    public function searchProduct($query) {
+        $sql = "SELECT * FROM tbl_product WHERE product_name LIKE '%$query%'";
+        return $this->db->select($sql);
+    }
+    
+    public function get_related_product_by_brand($brand_id, $product_id) {
+        $query = "SELECT * FROM tbl_product 
+                  WHERE brand_id = '$brand_id' 
+                  AND product_id != '$product_id' 
+                  ORDER BY product_id DESC 
+                  LIMIT 10";
+        return $this->db->select($query);
+    }
+    
+    
 }
 ?> 
 

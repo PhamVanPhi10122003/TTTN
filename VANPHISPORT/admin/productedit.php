@@ -42,10 +42,10 @@ if ($get_product) {
             <input type="text" name="product_name" value="<?php echo $result['product_name']; ?>" required> 
             <br>
             <label for="product_price">Giá sản phẩm </label>   <br>
-            <input type="text" name="product_price" value="<?php echo $result['product_price']; ?>" required> 
+            <input type="text" name="product_price" value="<?php echo number_format($result['product_price'], 0, ',', '.'); ?> " required> 
             <br>
             <label for="product_price_new">Giá sản phẩm mới</label> 
-            <input type="text" name="product_price_new" value="<?php echo $result['product_price_new']; ?>">
+            <input type="text" name="product_price_new" value="<?php echo number_format($result['product_price_new'], 0, ',', '.'); ?>">
             <br>
             <label for="product_desc">Mô tả sản phẩm</label>
             <textarea name="product_desc" required><?php echo $result['product_desc']; ?></textarea>

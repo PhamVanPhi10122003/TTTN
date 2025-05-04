@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url('../image/b3.jpg') no-repeat center center/cover; 
+    background: url('../image/banner8.webp') no-repeat center center/cover; 
     /* Thay 'payment-success-bg.jpg' bằng đường dẫn ảnh nền của bạn */
     height: 100vh;
     display: flex;
@@ -35,3 +35,4 @@ body {
     font-weight: bold;
     color: yellow;
 }
+

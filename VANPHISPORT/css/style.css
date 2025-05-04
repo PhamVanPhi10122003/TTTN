@@ -109,32 +109,34 @@ header.sticky {
     display: block;
     position: relative;
     padding-top: 56.25%;
+    
   }
   
-  .aspect-ratio-169 img {
-    display: block;
+  
+.aspect-ratio-169 img {
     position: absolute;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
-  }
-  
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giữ tỷ lệ ảnh và cắt phần dư */
+}
 
 .dot-container {
-    position: absolute;
-    height: 30px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
 }
+
 .dot {
-    height: 16px;
-    width: 16px;
-    background-color: #ccc;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    background-color: #bbb;
     border-radius: 50%;
-    margin-right: 12px;
+    display: inline-block;
+    cursor: pointer;
 }
+
 .dot.active {
     background-color: #333;
 }
@@ -381,6 +383,11 @@ header.sticky {
     color: red;
     font-weight: bold;
     font-size: 18px;
+}
+
+.product-content-right-bottom-content-chitiet img {
+  max-width: 100%; /* Ensures the image doesn't exceed its container's width */
+
 }
 .size span {
     display: inline-block;
@@ -1731,5 +1738,121 @@ button:disabled {
 button i {
     font-size: 18px;
 }
+
+
+
+#searchInput:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+/* Đảm bảo #searchResults hiển thị đúng */
+#searchResults {
+    position: absolute;
+    width: 100%;
+    max-width: 200px;
+    border-top: none;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 10px 10px;
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 25px;
+    z-index: 1000;
+    font-size: 13px;
+}
+
+/* Các mục trong kết quả tìm kiếm */
+#searchResults li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-bottom: 1px solid #ddd;
+}
+
+#searchResults li:hover {
+    background: #f0f0f0;
+}
+
+/* Hiển thị khi có kết quả */
+#searchResults.active {
+    display: block !important;
+}
+
+
+
+
+/* width >= 740px and width < 1024 px */
+
+
+/* Biểu tượng hamburger (ví dụ) */
+/* Biểu tượng hamburger chỉ hiện ở mobile & tablet */
+/* Biểu tượng hamburger mặc định ẩn, chỉ hiện ở mobile/tablet */
+.hamburger-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Menu mặc định ẩn */
+.menu {
+    display: none;
+    flex-direction: column;
+    background-color: #fff;
+    position: absolute;
+    top: 100%; /* để menu hiện dưới hamburger */
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Khi menu được active (đã bấm vào hamburger) */
+.menu.active {
+    display: flex;
+}
+
+/* Mobile & tablet */
+@media only screen and (max-width: 1023px) {
+    .hamburger-icon {
+        display: flex;
+        padding-left: 0%;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+}
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+    .hamburger-icon {
+        display: none !important;
+    }
+
+    .menu {
+        display: flex !important;
+        position: static; /* bỏ vị trí tuyệt đối */
+        flex-direction: row;
+        background-color: transparent;
+        box-shadow: none;
+    }
+}
+/* ===== DÀNH RIÊNG CHO IPHONE 14 PRO MAX ===== */
+@media only screen and (max-width: 430px) {
+    #searchInput,
+    #searchResults,
+    .fa-search {
+        display: none;
+    }
+    .logo {
+        display: none;
+    }
+}
+
 
 

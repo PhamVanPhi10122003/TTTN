@@ -25,7 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         exit();
     } else {
-        echo "Email hoặc mật khẩu không chính xác.";
+        echo "<script>
+        alert('Email hoặc mật khẩu không chính xác.');
+        window.location.href = 'login.php';
+    </script>";
     }
 }
 ?>

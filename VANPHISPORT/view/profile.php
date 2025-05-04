@@ -13,6 +13,18 @@ $user = new user();
 $current_user = $user->get_user_by_id($_SESSION['id_user']);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+    $new_username = trim($_POST['username']);
+    $new_lastname = trim($_POST['lastname']);
+
+    // Kiểm tra nếu có sự thay đổi
+    if ($new_username !== $current_user['username'] || $new_lastname !== $current_user['lastname']) {
+        $update_info = $user->update_user_info($_SESSION['id_user'], $new_username, $new_lastname);
+        if ($update_info) {
+            echo "<script>alert('Cập nhật thông tin thành công!'); window.location.href = 'profile.php';</script>";
+        } else {
+            echo "<script>alert('Lỗi khi cập nhật thông tin.');</script>";
+        }
+    }
     if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === 0) {
         $file = $_FILES['avatar'];
         
@@ -109,7 +121,8 @@ $show_cartegory = $cartegory->show_cartegory();
     ?>
 </div>
 <div class="other">
-        <li><input id="searchInput" placeholder="Tìm kiếm" type="text"><i class="fas fa-search"></i></li>
+        <li><input id="searchInput" placeholder="Tìm kiếm sản phẩm..." type="text" onkeyup="searchProduct()"><i class="fas fa-search"></i></li> 
+        <div id="searchResults"></div>
         <li><a class="fa fa-user" href="profile.php"></a></li>
         <li><a class="fa fa-shopping-bag" href="history.php"></a></li>
         <li><a class="fa fa-history" href="rental_history.php"></a></li>
@@ -141,10 +154,10 @@ $show_cartegory = $cartegory->show_cartegory();
         <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
         <form action="profile.php" method="POST" enctype="multipart/form-data">
             <label>Tên đăng nhập</label>
-            <input type="text" value="<?php echo htmlspecialchars($current_user['username']); ?>">
+            <input type="text" name="username" value="<?php echo htmlspecialchars($current_user['username']); ?>">
 
             <label>Họ & Tên</label>
-            <input type="text" value="<?php echo htmlspecialchars($current_user['lastname']); ?>">
+            <input type="text" name="lastname" value="<?php echo htmlspecialchars($current_user['lastname']); ?>">
 
             <label>Email</label>
             <input type="email" value="<?php echo htmlspecialchars($current_user['email']); ?>" disabled>
@@ -159,19 +172,19 @@ $show_cartegory = $cartegory->show_cartegory();
     </div>
 </div>
 <div class="chat-container">
-        <div class="chat-circle" onclick="toggleChatbox()">
-            <i class="fas fa-comments"></i>
-        </div>
-        <div class="chatbox">
-            <div class="chat-header">
-                <span>Chat với Văn Phi Sport</span>
-            </div>
-            <div class="chat-messages" id="chat-messages"></div>
-            <input type="text" id="username" placeholder="Tên của bạn">
-            <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
-            <button onclick="sendMessage()">Gửi</button>
-        </div>
+    <div class="chat-circle" onclick="toggleChatbox()">
+        <i class="fas fa-comments"></i>
     </div>
+    <div class="chatbox">
+        <div class="chat-header">
+            <span>Chat với Văn Phi Sport</span>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <textarea id="message" placeholder="Nhập tin nhắn..." onkeypress="handleKeyPress(event)"></textarea>
+        <button onclick="sendMessage()">Gửi</button>
+    </div>
+</div>
 <script src="../js/admin.js"> </script>
+<script src="../js/script.js"> </script>
 </body>
 </html>

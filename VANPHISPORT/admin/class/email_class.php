@@ -11,15 +11,15 @@ class Email {
         try {
             // Cấu hình SMTP
             $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com'; // Đổi thành SMTP của bạn
+            $mail->Host       = 'smtp.gmail.com'; 
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'vanphi101220033@gmail.com'; // Thay bằng email của bạn
-            $mail->Password   = 'dqoo wybv gbsw ehzo'; // Thay bằng mật khẩu email hoặc App Password
+            $mail->Username   = 'vanphi101220033@gmail.com'; 
+            $mail->Password   = 'dqoo wybv gbsw ehzo'; 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
             // Cấu hình người gửi & nhận
-            $mail->setFrom('vanphi101220033@gmail.com', 'VĂN PHI SPORT');
+            $mail->setFrom('vanphi101220033@gmail.com', 'VAN PHI SPORT');
             $mail->addAddress($to);
 
             // Nội dung email

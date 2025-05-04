@@ -80,15 +80,16 @@ if (!$show_cartegory) {
             ?>
         </div>
         <div class="other">
-        <li><input id="searchInput" placeholder="Tìm kiếm" type="text"><i class="fas fa-search"></i></li>
-        <li><a class="fa fa-user" href="profile.php"></a></li>
-        <li><a class="fa fa-shopping-bag" href="history.php"></a></li>
-        <li><a class="fa fa-history" href="rental_history.php"></a></li>
-        <?php if (isset($_SESSION["id_user"])) { ?>
-        <li><a href="logout.php">Đăng xuất</a></li>
-        <?php } else { ?>
-        <li><a href="login.php">Đăng nhập</a></li>
-        <?php } ?>
+            <li><input id="searchInput" placeholder="Tìm kiếm sản phẩm..." type="text" onkeyup="searchProduct()"><i class="fas fa-search"></i></li> 
+            <div id="searchResults"></div>
+            <li><a class="fa fa-user" href="profile.php"></a></li>
+            <li><a class="fa fa-shopping-bag" href="history.php"></a></li>
+            <li><a class="fa fa-history" href="rental_history.php"></a></li>
+            <?php if (isset($_SESSION["id_user"])) { ?>
+            <li><a href="logout.php">Đăng xuất</a></li>
+            <?php } else { ?>
+            <li><a href="login.php">Đăng nhập</a></li>
+            <?php } ?>
         </div>
 </header>
 </section>
@@ -146,20 +147,19 @@ if (!$show_cartegory) {
         <button type="submit">Xác nhận thanh toán</button>
         <?php if (isset($error_message)) { echo "<p style='color:red;'>$error_message</p>"; } ?>
     </form>
-    <div class="chat-container">
-        <div class="chat-circle" onclick="toggleChatbox()">
-            <i class="fas fa-comments"></i>
-        </div>
-        <div class="chatbox">
-            <div class="chat-header">
-                <span>Chat với Văn Phi Sport</span>
-            </div>
-            <div class="chat-messages" id="chat-messages"></div>
-            <input type="text" id="username" placeholder="Tên của bạn">
-            <textarea id="message" placeholder="Nhập tin nhắn..."></textarea>
-            <button onclick="sendMessage()">Gửi</button>
-        </div>
+<div class="chat-container">
+    <div class="chat-circle" onclick="toggleChatbox()">
+        <i class="fas fa-comments"></i>
     </div>
+    <div class="chatbox">
+        <div class="chat-header">
+            <span>Chat với Văn Phi Sport</span>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <textarea id="message" placeholder="Nhập tin nhắn..." onkeypress="handleKeyPress(event)"></textarea>
+        <button onclick="sendMessage()">Gửi</button>
+    </div>
+</div>
 <script src="../js/admin.js"> </script>
 <script src="../js/script.js"> </script>
 </section>

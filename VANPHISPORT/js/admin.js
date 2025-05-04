@@ -1,6 +1,6 @@
 function loadMessages() {
     fetch("http://localhost:8080/TTTN/VANPHISPORT/admin/get_messages.php")
-        .then(response => response.json())
+        .then(response => response.json())  
         .then(data => {
             const chatMessages = document.getElementById("chat-messages");
             chatMessages.innerHTML = ""; // Xóa nội dung cũ

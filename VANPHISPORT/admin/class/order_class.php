@@ -31,15 +31,15 @@ class Order {
     }
 
     // Cập nhật trạng thái đơn hàng
-    public function update_order_status($id_user, $status) {
-        $query = "UPDATE tbl_address SET status = '$status' WHERE id_user = '$id_user'";
+    public function update_order_status($id, $status) {
+        $query = "UPDATE tbl_address SET status = '$status' WHERE id = '$id'";
         $result = $this->db->update($query);
         return $result;
     }
 
     // Xóa đơn hàng
-    public function delete_order($id_user) {
-        $query = "DELETE FROM tbl_address WHERE id_user = '$id_user'";
+    public function delete_order($id) {
+        $query = "DELETE FROM tbl_address WHERE id = '$id'";
         $result = $this->db->delete($query);
         return $result;
     }

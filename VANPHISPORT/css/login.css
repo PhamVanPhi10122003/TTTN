@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url('../image/b4.jpg') no-repeat center center/cover;
+    background: url('../image/banner7.webp') no-repeat center center/cover;
  
     backdrop-filter: blur(5px); /* Làm mờ nền sau */
     height: 100vh;
